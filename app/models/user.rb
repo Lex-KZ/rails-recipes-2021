@@ -6,6 +6,7 @@ class User < ApplicationRecord
     validates :last_name, presence: true
 
     has_many :recipes
+    has_one :address, dependent: :destroy
 
     after_initialize do |user|
         unless user.skill_level
