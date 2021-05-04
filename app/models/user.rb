@@ -9,6 +9,8 @@ class User < ApplicationRecord
     has_one :address, dependent: :destroy
     has_many :comments, as: :commentable
 
+    accepts_nested_attributes_for :comments
+
     after_initialize do |user|
         unless user.skill_level
            user.skill_level = 1
