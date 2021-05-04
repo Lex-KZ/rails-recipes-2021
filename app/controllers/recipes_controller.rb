@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
+  before_action :authenticate
   before_action :set_recipe, only: %i[ show edit update destroy ]
-
+  
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.all
@@ -8,6 +9,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1 or /recipes/1.json
   def show
+    session[:visits] = (session[:visits] || 0) + 1
   end
 
   # GET /recipes/new
