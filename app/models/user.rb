@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
     has_many :recipes
     has_one :address, dependent: :destroy
+    has_many :comments, as: :commentable
 
     after_initialize do |user|
         unless user.skill_level
