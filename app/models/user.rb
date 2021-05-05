@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
     accepts_nested_attributes_for :comments
 
+    has_secure_password
+
     after_initialize do |user|
         unless user.skill_level
            user.skill_level = 1
