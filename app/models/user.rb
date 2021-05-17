@@ -14,6 +14,15 @@ class User < ApplicationRecord
     has_one :address, dependent: :destroy
     has_many :comments, as: :commentable
 
+    has_many :sales, class_name: "Transaction", foreign_key: :seller_id
+    has_many :sold_recipes, through: :sales, source: :recipe
+
+    has_many :purchases, class_name: "Transaction", foreign_key: :buyer_id
+    has_many :purchased_recipes, through: :purchases, source: :recipe
+
+    scope :sellers, -> { joins(:sales) }
+    scope :buyers, -> { joins(:purchases) }
+
     accepts_nested_attributes_for :comments
 
     after_initialize do |user|
