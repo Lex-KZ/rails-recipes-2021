@@ -118,4 +118,6 @@ ActiveRecord::Schema.define(version: 2021_05_17_011151) do
   add_foreign_key "ingredients_recipes", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "transactions", "recipes"
+  add_foreign_key "transactions", "users", column: "buyer_id"
+  add_foreign_key "transactions", "users", column: "seller_id"
 end

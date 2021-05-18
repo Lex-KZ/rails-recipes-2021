@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :recipes
+  resources :transactions, only: [:create]
+  get 'checkout/success', to: 'transactions#success'
 
   root "recipes#index"
 end
