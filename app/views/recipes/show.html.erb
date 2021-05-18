@@ -29,6 +29,10 @@
   checkoutButton.addEventListener("click", function () {
     fetch("/transactions", {
       method: "POST",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: "id=<%= @recipe.id %>"
     })
       .then(function (response) {
         return response.json();

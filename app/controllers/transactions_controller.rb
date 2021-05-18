@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
     def create
+        recipe = Recipe.find params["id"]
         session = Stripe::Checkout::Session.create({
             payment_method_types: ['card'],
             line_items: [
