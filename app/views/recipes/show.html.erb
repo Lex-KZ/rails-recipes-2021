@@ -4,15 +4,15 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @recipe.name %>
+  <%= recipe.name %>
 </p>
 
 <p>
   <strong>Difficulty:</strong>
-  <%= @recipe.difficulty %>
+  <%= recipe.difficulty %>
 </p>
 
-<% if @recipe.image.attached? %>
+<% if recipe.image.attached? %>
   <%= image_tag url_for(@recipe.image), class: 'recipe' %>
 <% end %>
 

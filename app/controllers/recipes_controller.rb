@@ -1,7 +1,17 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_recipe, only: %i[ show edit update destroy ]
-  
+  # before_actino :set_visits, only: [:show, :index]
+
+  # rescue_from RuntimeError, with: :unauthorised
+  # rescue_from RuntimeError, with: -> { redirect_to recipes_path }
+  rescue_from Pundit::NotAuthorizedError, with: :unauthorised
+
+  def unauthorised
+    flash[:alert] = "You're not allowed! Go away!"
+    redirect_to recipes_path
+  end
+
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.all
@@ -19,6 +29,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    authorize @recipe
   end
 
   # POST /recipes or /recipes.json

@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+    skip_before_action :verify_authenticity_token, only: [:create]
+
     def create
         recipe = Recipe.find params["id"]
         session = Stripe::Checkout::Session.create({
